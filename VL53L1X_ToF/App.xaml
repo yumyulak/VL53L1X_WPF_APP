@@ -1,7 +1,7 @@
-﻿<Application x:Class="HCSR05_Distance_Sensor.App"
+﻿<Application x:Class="VL53LX_ToF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:HCSR05_Distance_Sensor"
+             xmlns:local="clr-namespace:VL53LX_ToF"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          
