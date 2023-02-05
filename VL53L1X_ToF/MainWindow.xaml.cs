@@ -117,6 +117,7 @@ namespace VL53LX_ToF
                 {
                     average[j] = average[j + 1];
                 }
+                //what happens in GIT if I change this??
                 average[9] = ints[1];
                 showDist.Text = Convert.ToString(Math.Round(average.Average(), 0));
                 line = parts[1];
