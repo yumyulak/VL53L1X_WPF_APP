@@ -5,7 +5,6 @@ using System.IO.Ports;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -26,9 +25,8 @@ namespace VL53LX_ToF
         double xDivider = 10;
         double yDivider = 1;
         int count = 0;
-        int j = 0;
         bool record = false;
-        List<int> average = new List<int>() { 0, 0, 0, 0, 0, 0 };
+        List<int> average = new List<int>() { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         CoordinatSystem distanceGraph = new CoordinatSystem();
         public MainWindow()
         {
@@ -60,12 +58,12 @@ namespace VL53LX_ToF
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.MessageBox.Show($"{ex}","failed to connect");
+                    System.Windows.MessageBox.Show($"{ex}", "failed to connect");
                 }
                 //Sets button State and Creates function call on data recieved
                 Connect_btn.Content = "Disconnect";
                 serial.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(Recieve);
-                if(serial.IsOpen)
+                if (serial.IsOpen)
                     System.Windows.MessageBox.Show("Connected to " + Comm_Port_Names.Text, "System Message");
             }
             else
@@ -115,16 +113,11 @@ namespace VL53LX_ToF
                         DrawPoint(xd, yd, distanceCanvas);
                     data.Add(line);
                 }
-                if (j < 5)
+                for (int j = 0; j < 9; j++)
                 {
-                    average[j] = ints[1];
-                    j++;
+                    average[j] = average[j + 1];
                 }
-                else
-                {
-                    average[j] = ints[1];
-                    j = 0;
-                }
+                average[9] = ints[1];
                 showDist.Text = Convert.ToString(Math.Round(average.Average(), 0));
                 line = parts[1];
                 ints.Clear();
